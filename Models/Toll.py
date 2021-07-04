@@ -8,14 +8,25 @@ class Toll:
     def __init__(self):
         self.__confinit()
 
-    def __init__(self,name,valueBase,increLeft,increRight):
-
+    # Settea la variable de nombre
+    def setName(self,name):
         self.name = name
+    
+    # Settea la variable del valor base
+    def setvalueBase(self,valueBase):
         self.valueBase = valueBase
+    
+    # Settea la variable de incremento del valor izquierdo
+    def setIncreLeft(self,increLeft):
         self.increLeft = increLeft
+    
+    # Settea la variable de incremento del valor derecho
+    def setIncreRight(self,increRight):
         self.increRight = increRight
 
-        self.__confinit()
+    # Settea la variable de incremento del valor derecho
+    def setCategory(self,category):
+        self.category = category
 
     # Configuración inicial para el almacenamiento de peajes
     def __confinit(self):
@@ -29,12 +40,13 @@ class Toll:
     def save(self):
 
         tollId = self.__get_random_string()
-        print(tollId)
-        jsonFile = {'id': tollId, 'name': self.name, 'valueBase': self.valueBase,'increLeft':self.valueBase,'increRight': self.increRight}
+        jsonFile = {'id': tollId, 'name': self.name, 'valueBase': self.valueBase,'increLeft':self.increLeft,'increRight': self.increRight,'category':self.category}
 
         with open(self.pathToll+tollId+'.json','w') as json_file:
             json.dump(jsonFile, json_file)
 
+        return True
+
+    # Obtendra un string único para almacenar el json
     def __get_random_string(self):
-        # With combination of lower and upper case
         return ''.join(random.choice(string.ascii_letters) for i in range(8))
