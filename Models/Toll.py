@@ -5,7 +5,8 @@ import string
 
 class Toll:
 
-    def __init__(self):
+    def __init__(self,Tree):
+        self.Tree = Tree
         self.__confinit()
 
     # Settea la variable de nombre
@@ -44,6 +45,8 @@ class Toll:
 
         with open(self.pathToll+tollId+'.json','w') as json_file:
             json.dump(jsonFile, json_file)
+
+        self.Tree.AgregarPeaje(self.name,tollId,self.valueBase,self.increLeft,self.increRight,self.category)
 
         return True
 

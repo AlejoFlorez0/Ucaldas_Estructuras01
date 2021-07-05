@@ -4,7 +4,9 @@ from Views.Auto.autoIndex import autoIndex
 
 class Menu:
 
-    def __init__(self):
+    def __init__(self,Tree):
+
+        self.Tree = Tree
         self.windows = tkinter.Tk()
         self.windows.geometry("500x300")
 
@@ -31,7 +33,7 @@ class Menu:
 
     # Abrirá el Formulario para Los peajes
     def __Toll(self):
-        instanceTollIndex = tollIndex()
+        instanceTollIndex = tollIndex(self.Tree)
         self.windows.destroy()
         instanceTollIndex.show()
 

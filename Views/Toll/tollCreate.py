@@ -5,8 +5,9 @@ from Models.Toll import Toll
 
 class tollCreate:
 
-    def __init__(self):
+    def __init__(self,Tree):
 
+        self.Tree = Tree
         self.windows = tkinter.Tk()
         self.windows.geometry("500x600")
 
@@ -27,6 +28,8 @@ class tollCreate:
 
     #Mostrar interfaz grafica
     def show(self):
+
+        self.Tree.imprimir_pre_order(self.Tree.raiz)
 
         title = Label(self.windows, text="Peajes DORA")
         title.config(bg="#0275d8", fg="white", font=("Comic Sans", 18))
@@ -76,7 +79,7 @@ class tollCreate:
     # Creará una instancia de la clase Toll
     def __save(self):
         
-        instaceToll = Toll()
+        instaceToll = Toll(self.Tree)
         instaceToll.setName(self.nameValue.get())
         instaceToll.setvalueBase(self.valueBaseValue.get())
         instaceToll.setIncreLeft(self.leftIncreValue.get())
@@ -84,5 +87,4 @@ class tollCreate:
         instaceToll.setCategory(self.category.get())
         
         if instaceToll.save():
-            pass
-            #self.windows.destroy()
+            self.windows.destroy()

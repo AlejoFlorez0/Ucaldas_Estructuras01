@@ -6,7 +6,9 @@ from Views.Toll.tollCreate import tollCreate
 
 class tollIndex:
 
-    def __init__(self):
+    def __init__(self,Tree):
+
+        self.Tree = Tree
         self.tolls=[]
         self.windows = tkinter.Tk()
         self.windows.geometry("500x600")
@@ -42,8 +44,8 @@ class tollIndex:
 
     # Abrirá un nuevo formulario para agregar un nuevo peaje
     def add(self):
-        instanceTollCreate = tollCreate()
-        self.windows.destroy()
+        instanceTollCreate = tollCreate(self.Tree)
+        #self.windows.destroy()
         instanceTollCreate.show()
         pass
 #a = tollIndex()

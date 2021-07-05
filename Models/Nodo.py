@@ -14,6 +14,7 @@ class Nodo:
         self.padre = padre
         self.bandera = True
         self.autosPeajes = []
+        self.pagos = []
 
     # Retornar el nodo del hijo izquierdo [None cuando no tiene hijo]
     def ObtenerHijoIzquierdo(self):
@@ -59,10 +60,14 @@ class Nodo:
     def ObtenerNivel(self):
         return self.nivel
 
+    # Valida sí es hijo izquierdo
     def EsHijoIzquierdo(self):
         if (self.padre):
-            return self.valor == self.padre.ObtenerHijoIzquierdo().valor
+            if self.padre.ObtenerHijoIzquierdo():
+                return self.valor == self.padre.ObtenerHijoIzquierdo().valor
 
+    #Valida sí es hijo derecho
     def EsHijoDerecho(self):
         if (self.padre):
-            return self.valor == self.padre.ObtenerHijoDerecho().valor
+            if self.padre.ObtenerHijoDerecho():
+                return self.valor == self.padre.ObtenerHijoDerecho().valor

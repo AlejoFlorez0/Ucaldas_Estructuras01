@@ -1,11 +1,13 @@
 import tkinter
 
 from Views.Menu import Menu
+from Models.Tree import Tree
 
 class index:
 
     def __init__(self):
         
+        self.Tree = Tree()
         self.windows = tkinter.Tk()
         self.windows.geometry("500x300")
 
@@ -41,7 +43,7 @@ class index:
 
     # Función cuando desea continuar con el sistema anterior
     def isSuccess(self):
-        instanceMenu = Menu()
+        instanceMenu = Menu(self.Tree)
         self.windows.destroy()
         instanceMenu.show()
 

@@ -1,7 +1,5 @@
 import os
 import json
-import random
-import string
 
 class Auto:
 
