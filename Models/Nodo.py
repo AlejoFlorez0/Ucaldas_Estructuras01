@@ -16,6 +16,10 @@ class Nodo:
         self.autosPeajes = []
         self.pagos = []
 
+    #Obtiene el valor de 
+    def getValue(self):
+        return self.valor
+
     # Retornar el nodo del hijo izquierdo [None cuando no tiene hijo]
     def ObtenerHijoIzquierdo(self):
         return self.hijoIzquierdo
@@ -41,7 +45,6 @@ class Nodo:
     def ObtenerRecargoDe(self):
         return self.recargoDerecho
 
-    
     def PonerPadre(self, padre):
         self.padre = padre
 

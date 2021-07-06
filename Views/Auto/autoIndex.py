@@ -10,6 +10,7 @@ class autoIndex:
         self.autos=[]
         self.windows = tkinter.Tk()
         self.windows.geometry("500x600")
+        self.windows.title("Peajes Dora - Alejandro González Flórez - Marlon Aristizabal Herrea")
         self.__config()
 
     # Configuración de la vista principal

@@ -10,6 +10,7 @@ class tollCreate:
         self.Tree = Tree
         self.windows = tkinter.Tk()
         self.windows.geometry("500x600")
+        self.windows.title("Peajes Dora - Alejandro González Flórez - Marlon Aristizabal Herrea")
 
         # Define el valor de identificación
         self.nameValue = Entry(self.windows)
@@ -32,7 +33,7 @@ class tollCreate:
         self.Tree.imprimir_pre_order(self.Tree.raiz)
 
         title = Label(self.windows, text="Peajes DORA")
-        title.config(bg="#0275d8", fg="white", font=("Comic Sans", 18))
+        title.config(bg="#C861D3", fg="white", font=("Comic Sans", 18))
         title.place(x=0,y=0,relwidth=1,relheight=0.2)
 
         b = Label(self.windows ,text = "Nombre",borderwidth=2, relief="groove")

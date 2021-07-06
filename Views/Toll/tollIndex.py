@@ -12,6 +12,7 @@ class tollIndex:
         self.tolls=[]
         self.windows = tkinter.Tk()
         self.windows.geometry("500x600")
+        self.windows.title("Peajes Dora - Alejandro González Flórez - Marlon Aristizabal Herrea")
         self.__config()
 
     # Configuración de la vista principal
@@ -33,7 +34,6 @@ class tollIndex:
         frame.config(height=600) 
         frame.pack(fill="x",pady=100)
         
-        iterator = 0
         for file in self.tolls:
             
             lblToll = Label(frame,text=file,relief="groove",cursor="hand2")

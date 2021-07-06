@@ -9,6 +9,7 @@ class autoCreate:
 
         self.windows = tkinter.Tk()
         self.windows.geometry("500x600")
+        self.windows.title("Peajes Dora - Alejandro González Flórez - Marlon Aristizabal Herrea")
 
         # Define el tipo del vehiculo
         self.autoType = Entry(self.windows)
@@ -26,7 +27,7 @@ class autoCreate:
     def show(self):
 
         title = Label(self.windows, text="Peajes DORA")
-        title.config(bg="#0275d8", fg="white", font=("Comic Sans", 18))
+        title.config(bg="#C861D3", fg="white", font=("Comic Sans", 18))
         title.place(x=0,y=0,relwidth=1,relheight=0.2)
 
         b = Label(self.windows ,text = "Tipo de Vehiculo",borderwidth=2, relief="groove")
