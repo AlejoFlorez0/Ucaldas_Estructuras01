@@ -74,5 +74,4 @@ class autoCreate:
         instaceAuto.setNightSurcharge(self.nightSurcharge.get())
         
         if instaceAuto.save():
-            pass
-            #self.windows.destroy()
+            self.windows.destroy()

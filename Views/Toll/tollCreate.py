@@ -5,7 +5,7 @@ from Models.Toll import Toll
 
 class tollCreate:
 
-    def __init__(self,Tree):
+    def __init__(self,Tree,Toll = None):
 
         self.Tree = Tree
         self.windows = tkinter.Tk()
@@ -27,10 +27,16 @@ class tollCreate:
         # Define el valor de la categoria
         self.category = Entry(self.windows)
 
+        if Toll:
+            self.load(Toll)
+
+    # Cargará los registros de otro
+    def load(self,toll):
+        pass
+        
+
     #Mostrar interfaz grafica
     def show(self):
-
-        self.Tree.imprimir_pre_order(self.Tree.raiz)
 
         title = Label(self.windows, text="Peajes DORA")
         title.config(bg="#C861D3", fg="white", font=("Comic Sans", 18))

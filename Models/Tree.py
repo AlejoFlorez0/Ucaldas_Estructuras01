@@ -54,8 +54,11 @@ class Tree:
     # Validará el nodo actual y agregará un peaje dentro de los hijos sí es necesario
     def _AgregarPeaje(self, nombre, id, valueBase,increLeft,increRight,category, nodo):
 
+        nodo.valor = int(nodo.valor)
+        valueBase = int(valueBase)
+        
         # verificar sí es menor o mayor para ir por la izq o derecha respectivamente
-        if (nodo.valor > valueBase):
+        if nodo.valor > valueBase:
             # verifica si tiene hijo izq
             if (nodo.ObtenerHijoIzquierdo()):
                 #print("El hijo izquierdo es ",nodo.ObtenerHijoIzquierdo().valor)

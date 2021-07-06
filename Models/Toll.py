@@ -12,7 +12,7 @@ class Toll:
         self.__confinit()
 
     # Settea la variable id
-    def __setId(self,id):
+    def setId(self,id):
         self.id = id
 
     # Obtiene el id
@@ -85,7 +85,7 @@ class Toll:
         file = open (self.pathToll+fileName, "r")
         data = json.loads(file.read())
 
-        self.__setId(data['id'])
+        self.setId(data['id'])
         self.setName(data['name'])
         self.setvalueBase(data['valueBase'])
         self.setIncreLeft(data['increLeft'])

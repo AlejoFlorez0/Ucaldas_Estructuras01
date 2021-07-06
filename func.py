@@ -105,12 +105,15 @@ class ArbolPeajes:
     def PonerRaiz(self, raiz):
         self.raiz = raiz
 
+    # Obtiene los autos del arbol
     def ObtenerAutos(self):
         return self.Autos
 
+    # Obtiene el peso total del arbol
     def ObtenerPeso(self):
         return self.peso
 
+    # Recorre desde cualquier nodo
     def agregarRecorrido1(self, nodo, auto):
         if (not nodo):
             print("No hay ningun peaje disponible por ahora")
@@ -118,6 +121,7 @@ class ArbolPeajes:
 
             self._agregarRecorrido1(nodo, auto)
 
+    # Recorre desde cualquier nodo recursivamente
     def _agregarRecorrido1(self, nodo, auto):
         if nodo:
             # caso 1: cuando el nodo es raiz
@@ -356,6 +360,7 @@ class ArbolPeajes:
                             print("Listo")
                             print(f"el auto {auto.tipoAuto} debe pagar: {auto.valorPagos}")
 
+    # Recorre desde raiz
     def agregarRecorrido(self, nodo, auto):
         if (not nodo):
             print("No hay ningun peaje disponible en nuestro sistema")
@@ -363,6 +368,7 @@ class ArbolPeajes:
 
             self._agregarRecorrido(nodo, auto)
 
+    # Recorre desde raiz recursivamente
     def _agregarRecorrido(self, nodo, auto):
         if (nodo.EsNodoHoja()):
             print("Este es uno de los ultimos peajes de nuestro Sistema")
@@ -457,6 +463,7 @@ class ArbolPeajes:
                     nodo.autosPeajes.append(auto)
                     self._agregarRecorrido(nodo.ObtenerHijoIzquierdo(), auto)
 
+    # Agregará un nodo al arbol
     def AgregarPeaje(self, nombre, id, valor):
 
         if self.raiz:
@@ -483,6 +490,7 @@ class ArbolPeajes:
             self.peso += 1
             print("El Peaje de:  ", nombre, " se ha agregado como Primer peaje en el nivel" ,self.raiz.ObtenerNivel(),f"valor: {valor}","Recargo por Izquierda: ",self.raiz.ObtenerRecargoIz(),"Recargo por Derecha: ",self.raiz.ObtenerRecargoDe(),"Categoria: ",self.raiz.categoria)
 
+    # Agregará unnodo al arbol recursivamente
     def _AgregarPeaje(self, nombre,id ,valor, nodo):
         # verificar sí es menor o mayor para ir por la izq o derecha respectivamente
         if (valor < nodo.valor):
@@ -546,6 +554,7 @@ class ArbolPeajes:
                           nuevoNodo.ObtenerNivel(),"Recargo por Izquierda:",nuevoNodo.ObtenerRecargoIz(),"Recargo por Derecha:",nuevoNodo.ObtenerRecargoDe(),
                       "Categoria:",nuevoNodo.categoria)
 
+    # Mostrará el pago que se hicieron en cada peaje
     def pagoPeaje(self, nodo):
         total=0
         if (nodo):
@@ -565,6 +574,7 @@ class ArbolPeajes:
             self.pagoPeaje(nodo.ObtenerHijoDerecho())
             return total
 
+    # Mostrará el pago total de todo el arbol
     def totalArbol(self,nodo,total):
         if nodo:
             if len(nodo.pagos)!=0:
@@ -578,6 +588,8 @@ class ArbolPeajes:
             return self.totalArbol(nodo.ObtenerHijoDerecho(),total)
         return total
 
+    def CrearAuto1(self, tipoAuto, placa, valorPagar,recargoNoche):
+        self.Autos.append(Auto(tipoAuto,placa,valorPagar,recargoNoche))
 
     # Pre-order (R-I-D)
     def imprimir_pre_order(self, nodo):
@@ -649,6 +661,7 @@ class ArbolPeajes:
         else:
             print("El árbol está vacío.")
 
+    # Buscará un nodo en espcifico por el valor
     def buscarNodoPorValor(self, busqueda):
         if self.raiz:
             # iniciar búsqueda
@@ -657,6 +670,7 @@ class ArbolPeajes:
             print("El árbol está vacio y no se puede buscar.")
             return None
 
+    # Buscará un nodo en espcifico por el valor recursivamente
     def _buscarNodoPorValor(self, busqueda, nodo):
         if not nodo:
             return None
@@ -668,6 +682,7 @@ class ArbolPeajes:
             else:
                 return self._buscarNodoPorValor(busqueda, nodo.ObtenerHijoDerecho())
 
+    # Buscará un nodo en espcifico por una llave
     def buscarNodoPorLlave(self, busqueda):
         if self.raiz:
             # iniciar búsqueda
@@ -676,12 +691,14 @@ class ArbolPeajes:
             print("El árbol está vacio y no se puede buscar.")
             return None
 
+    # Buscará un nodo en espcifico por una llave recursivamente
     def _buscarNodoPorLlave1(self, busqueda, nodo):
         if (nodo):
             if (nodo.nombre.upper() == busqueda.upper() or nodo.id.upper() == busqueda.upper()):
                 return nodo
             return self._buscarNodoPorLlave1(busqueda, nodo.ObtenerHijoIzquierdo()) or self._buscarNodoPorLlave1(busqueda,nodo.ObtenerHijoDerecho())
 
+    # Buscará un nodo en espcifico por una llave recursivamente
     def _buscarNodoPorLlave(self, busqueda, nodo):
         if (nodo):
             if (nodo.nombre.upper() == busqueda.upper() or nodo.id.upper() == busqueda.upper()):
@@ -707,6 +724,7 @@ class ArbolPeajes:
         else:
             return None
 
+    # Eliminará un nodo en especifico
     def EliminarNodo(self, busqueda):
         if (self.raiz):
             if isinstance(busqueda, str):
@@ -721,6 +739,7 @@ class ArbolPeajes:
             print("El árbol está vacío.")
         return
 
+    # Eliminará un nodo en especifico mientras lo busca
     def _eliminarNodo(self, nodo):
         # caso 1: cuando el nodo, es nodo hoja
         if nodo.EsNodoHoja():
@@ -786,17 +805,20 @@ class ArbolPeajes:
                         nodo.ObtenerPadre().PonerHijoDerecho(sucesor)
         return nodob
 
+    # Obtendrá el último hijo de la izquierda de la rama derecha
     def ObtenerSucesor(self, nodo):
         while (nodo.ObtenerHijoIzquierdo()):
             nodo = nodo.ObtenerHijoIzquierdo()
         return nodo
 
+    # Regresará a un nivel anterior
     def DisminuirNivel(self, nodo):
         if (nodo):
             nodo.nivel -= 1
             self.DisminuirNivel(nodo.ObtenerHijoIzquierdo())
             self.DisminuirNivel(nodo.ObtenerHijoDerecho())
 
+    # Cambiará la posición de un peaje
     def CambiarPeajePos1(self, nodo):
         self.imprimir_pre_order(self.raiz)
         salida = False
@@ -847,6 +869,7 @@ class ArbolPeajes:
             else:
                 print("el Peaje para asignar no esta")
 
+    # Agregará un nuevo auto
     def CrearAuto(self):
         tipoAuto = input("tipo de vehiculo: ")
         placa = input("Placa del vehiculo: ")
@@ -854,16 +877,19 @@ class ArbolPeajes:
         recargoNoche = int(input("Recargo de noche: "))
         self.Autos.append(Auto(tipoAuto,placa,valorPagar,recargoNoche))
 
+    # Imprimirá los autos almacenados
     def ImprimirAutos(self):
         for x in range(len(self.Autos)):
             print(f"{x+1}- {self.Autos[x].tipoAuto} placa: {self.Autos[x].placa}")
         print("---------------------------------------------------")
 
+    # Mostrará el pago hecho por cada auto
     def pagoAutos(self, listaAutos,n):
         for i in listaAutos:
             n+=i
         return n
 
+    # Mostrará el auto con el pago menor
     def autoMenorPago (self, listaAutos):
         for x in range(len(listaAutos)):
             if x==0:
@@ -872,6 +898,7 @@ class ArbolPeajes:
                 menor=listaAutos[x]
         return menor
 
+    # Mostrará el auto con el pago mayor
     def autoMayorPago (self, listaAutos):
         for x in range(len(listaAutos)):
             if x==0:
@@ -880,6 +907,7 @@ class ArbolPeajes:
                 mayor=listaAutos[x]
         return mayor
 
+    # Mostrará el auto que paso por más peajes
     def autoMasPEajes (self, listaAutos):
         for x in range(len(listaAutos)):
             if x==0:
@@ -888,6 +916,7 @@ class ArbolPeajes:
                 mayor=listaAutos[x]
         return mayor
 
+    # Mostrará el peaje con más autos recorridos
     def PeajeMasRecorrido(self, nodo, aux):
         if (nodo):
             if nodo==self.raiz:
@@ -900,6 +929,7 @@ class ArbolPeajes:
 
         return aux
 
+    # Mostrará el peaje con menos autos recorridos
     def PeajeMenosRecorrido(self, nodo, aux1):
         if (nodo):
             if nodo==self.raiz:
@@ -914,6 +944,27 @@ class ArbolPeajes:
 
 recorrido1 = ArbolPeajes()
 retorno=True
+
+recorrido1.AgregarPeaje("MANIZALES","MN2021",25000)
+recorrido1.AgregarPeaje("MEDELLIN","MD2021",34500)
+recorrido1.AgregarPeaje("BARRANCABERMEJA","BR2021",18700)
+recorrido1.AgregarPeaje("PEREIRA","PR2021",27300)
+recorrido1.AgregarPeaje("CARTAGO","CRG2021",22400)
+recorrido1.AgregarPeaje("ARMENIA","ARM2021",33000)
+recorrido1.AgregarPeaje("TOLIMA","TL2021",33000)
+recorrido1.AgregarPeaje("CALI","CL2021",32200)
+recorrido1.AgregarPeaje("BOGOTA","BG2021",38700)
+recorrido1.AgregarPeaje("NEIVA","NV2021",22700)
+recorrido1.AgregarPeaje("POPAYAN","PY2021",12500)
+recorrido1.AgregarPeaje("PASTO","PS2021",13750)
+
+recorrido1.CrearAuto1("CAMION","CHE - 123",100,7)
+recorrido1.CrearAuto1("BUS DE TRANSPORTE PUBLICO","ITN - 311",90,6)
+recorrido1.CrearAuto1("CAMIONETA","HTY - 232",60,5)
+recorrido1.CrearAuto1("AUTOMOVIL","YTW - 909",50,4)
+recorrido1.CrearAuto1("MOTOCICLETA","QMB - 12D",20,3)
+recorrido1.CrearAuto1("MOTOCICLETA","NBO - 23S",10,2)
+
 while retorno==True:
     print("PROGRAMA PEAJES COLOMBIA")
     retorno = input("Desea continuar?. (si) ó (no): ")
@@ -1016,18 +1067,3 @@ while retorno==True:
                     print(f"el auto que mas peajes recorrio fue: {mayor1.tipoAuto}, En {len(mayor1.valorPagos)} peajes")
         elif m == 17:
             retorno=False
-
-
-Arbol1=ArbolPeajes()
-Arbol1.AgregarPeaje("MANIZALES","MN2021",25000)
-Arbol1.AgregarPeaje("MEDELLIN","MD2021",34500)
-Arbol1.AgregarPeaje("BARRANCABERMEJA","BR2021",18700)
-Arbol1.AgregarPeaje("PEREIRA","PR2021",27300)
-Arbol1.AgregarPeaje("CARTAGO","CRG2021",22400)
-Arbol1.AgregarPeaje("ARMENIA","ARM2021",33000)
-Arbol1.AgregarPeaje("TOLIMA","TL2021",33000)
-Arbol1.AgregarPeaje("CALI","CL2021",32200)
-Arbol1.AgregarPeaje("BOGOTA","BG2021",38700)
-Arbol1.AgregarPeaje("NEIVA","NV2021",22700)
-Arbol1.AgregarPeaje("POPAYAN","PY2021",12500)
-Arbol1.AgregarPeaje("PASTO","PS2021",13750)

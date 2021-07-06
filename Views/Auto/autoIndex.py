@@ -35,7 +35,7 @@ class autoIndex:
         iterator = 0
         for file in self.autos:
             
-            lblToll = Label(frame,text=file,relief="groove",cursor="hand2")
+            lblToll = Button(frame,text=file,relief="groove",cursor="hand2")
             lblToll.config(bg="#5bc0de", fg="white", font=("Comic Sans", 10))
             lblToll.pack(padx=15, pady=15, ipadx=15, ipady=15)  
 
@@ -44,5 +44,5 @@ class autoIndex:
     # Abrirá un nuevo formulario para agregar un nuevo peaje
     def add(self):
         instanceAutoCreate = autoCreate()
-        self.windows.destroy()
+        #self.windows.destroy()
         instanceAutoCreate.show()

@@ -15,7 +15,6 @@ class index:
         self.windows.title("Peajes Dora - Alejandro González - Marlon Herrera")
 
         self.config()
-        return True
 
     # Validará sí ya existe un archivo de carga de archivos
     # En caso de que exista hará una pregunta de validación

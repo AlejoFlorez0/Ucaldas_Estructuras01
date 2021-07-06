@@ -21,7 +21,7 @@ class treeNode:
         title.config(bg="#C861D3", fg="white", font=("Comic Sans", 18))
         title.place(x=0,y=0,relwidth=1,relheight=0.2)
 
-        btnPeaje = tkinter.Label(self.windows, text=self.Node.nombre)
+        btnPeaje = tkinter.Label(self.windows, text=self.Node.nombre+"\n Valor: "+str(self.Node.valor))
         btnPeaje.config(bg="#0275d8", fg="white", font=("Comic Sans", 18))
         btnPeaje.place(relx=0.35,rely=0.25, relwidth=0.3, relheight=0.3)
 
@@ -29,23 +29,43 @@ class treeNode:
 
             nodeLeft = self.Node.ObtenerHijoIzquierdo()
 
-            btnleftNode = tkinter.Button(self.windows, text=nodeLeft.nombre,command=lambda: self.__showNode(nodeLeft))
+            nodeLeftText = nodeLeft.nombre+"\n Valor: "+str(nodeLeft.valor)+"\n HIJOS: \n"
+
+            if nodeLeft.ObtenerHijoIzquierdo():
+                nodeLeftText = nodeLeftText+"\n"+str(nodeLeft.ObtenerHijoIzquierdo().valor)+" <-"
+            else:
+                nodeLeftText = nodeLeftText+"\n"
+
+            if nodeLeft.ObtenerHijoDerecho():           
+                nodeLeftText = nodeLeftText+"-> "+str(nodeLeft.ObtenerHijoDerecho().valor)
+
+            btnleftNode = tkinter.Button(self.windows, text=nodeLeftText,command=lambda: self.__showNode(nodeLeft))
             btnleftNode.config(bg="#5bc0de", fg="white", font=("Comic Sans", 18))
-            btnleftNode.place(relx=0,rely=0.6, relwidth=0.25, relheight=0.3)
+            btnleftNode.place(relx=0,rely=0.6, relwidth=0.4, relheight=0.3)
 
         if self.Node.ObtenerHijoDerecho():
 
             nodeRight = self.Node.ObtenerHijoDerecho()
 
-            btnRightNode = tkinter.Button(self.windows, text=nodeRight.nombre,command=lambda: self.__showNode(nodeRight))
+            nodeRightText = nodeRight.nombre+"\n Valor: "+str(nodeRight.valor)+"\n HIJOS: \n"
+
+            if nodeRight.ObtenerHijoIzquierdo():
+                nodeRightText = nodeRightText+"\n"+str(nodeRight.ObtenerHijoIzquierdo().valor)+" <-"
+            else:
+                nodeRightText = nodeRightText+"\n"
+
+            if nodeRight.ObtenerHijoDerecho():           
+                nodeRightText = nodeRightText+"-> "+str(nodeRight.ObtenerHijoDerecho().valor)
+
+            btnRightNode = tkinter.Button(self.windows, text=nodeRightText,command=lambda: self.__showNode(nodeRight))
             btnRightNode.config(bg="#5bc0de", fg="white", font=("Comic Sans", 18))
-            btnRightNode.place(relx=0.75,rely=0.6, relwidth=0.25, relheight=0.3)
+            btnRightNode.place(relx=0.6,rely=0.6, relwidth=0.4, relheight=0.3)
 
         self.windows.mainloop()
 
+    #
     def __showNode(self,node):
-        print(node.nombre)
         instenceNode = treeNode(node)
         instenceNode.show()
-        pass
+        return True
     

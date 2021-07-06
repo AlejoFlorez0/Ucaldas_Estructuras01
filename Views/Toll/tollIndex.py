@@ -2,6 +2,7 @@ import os
 import tkinter
 
 from tkinter import *
+from Models.Toll import Toll
 from Views.Toll.tollCreate import tollCreate
 
 class tollIndex:
@@ -36,9 +37,9 @@ class tollIndex:
         
         for file in self.tolls:
             
-            lblToll = Label(frame,text=file,relief="groove",cursor="hand2")
+            lblToll = Button(frame,text=file,relief="groove",cursor="hand2",command=lambda:self.update(file))
             lblToll.config(bg="#5bc0de", fg="white", font=("Comic Sans", 10))
-            lblToll.pack(padx=15, pady=15, ipadx=15, ipady=15)  
+            lblToll.pack()
 
         self.windows.mainloop()
 
@@ -47,6 +48,10 @@ class tollIndex:
         instanceTollCreate = tollCreate(self.Tree)
         #self.windows.destroy()
         instanceTollCreate.show()
-        pass
-#a = tollIndex()
-#a.show()
+        return True
+
+    # Cargara los contenidos de un peaje
+    def update(self,filename):
+        instanceToll = Toll()
+        instanceToll.loadFromFile(filename)
+        return True
